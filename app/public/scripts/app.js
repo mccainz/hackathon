@@ -38,5 +38,26 @@ app.controller("adminCtrl",function($scope){
     $scope.test=function(){
         alert("hello World");
     };
+    
+    $scope.loanOfficers=[
+            {   
+                "name":"Mccain, Zach",
+                "phone":"2107849834",
+                "id":"Zach",
+                "image":"images/zach.JPG"
+            },
+            {   
+                "name":"Nair, Anoop",
+                "phone":"2107849834",
+                "id":"Anoop",
+                "image":"images/anoop.JPG"
+            },
+            {   
+                "name":"Haggert, Kyle",
+                "phone":"2107849834",
+                "id":"Kyle",
+                "image":"images/kyle.JPG"
+            }
+        ];
 });
 

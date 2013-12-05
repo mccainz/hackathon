@@ -6,7 +6,33 @@
 
 <button class="hangup" onclick="hangup();">
     Hangup
-</button>
+</button
+
+<div class="row">
+    <div class="col-xs-5 col-md-4">
+        <div class="well">
+        <div ng-repeat="officer in loanOfficers" class="panel panel-primary">
+            <div class="panel-heading panel">
+                <img style="height:32px;width:32px;" src="{{officer.image}}"/>
+                {{officer.name}}  
+                <button type="button" class="btn btn-default btn-xs">
+                    <i class="fa fa-phone"></i>
+                </button
+                <button type="button" class="btn btn-default btn-xs">
+                    <i class="fa fa-desktop"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-xs">
+                    <i class="fa fa-phone"></i>
+                </button>
+            </div>  
+            <div class="panel-body">
+                some title
+            </div>
+        </div>
+        </div>
+    </div>
+  <div class="col-xs-7 col-md-8">.col-xs-6 .col-md-4</div>
+</div>
 
 <p>
     <a href="/qs2">&lt;&lt; Example 2</a> | <a href="/qs4">Example 4 &gt;&gt;</a>
@@ -19,7 +45,7 @@
         url: '/phone/capabilityToken', 
         async: false,
         success: function(data) {
-            console.log("Capability Token: " + capabilityToken);
+            console.log("Capability Token: " + data);
             capabilityToken = data;
         }
     });
