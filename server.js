@@ -1,4 +1,5 @@
 var ipp = require('./app/libs/ipp');
+var phone = require('./app/libs/phone');
 
 var express = require('express'),
     app = express();
@@ -13,7 +14,7 @@ app.get('/hello', function(req, res){
 });
 
 
-app.get('/ippTest', function(req, res) {
+app.get('/test/ipp', function(req, res) {
     // var processInstanceOID = ipp.startLoanApplicationProcess({});
     // console.log("processInstanceOID: " + processInstanceOID);
     
@@ -25,8 +26,26 @@ app.get('/ippTest', function(req, res) {
     var documentId = ipp.addDocumentToProcess(processInstanceOid, documentInfo);
     console.log("documentId: " + documentId);
     
-    var body = 'Hello World';
-    res.setHeader('Content-Type', 'text/plain');
-    res.setHeader('Content-Length', body.length);
-    res.end(body);
+    res.send('<html><body><h1>Hello IPP</h1></body></html>');
+});
+
+app.get('/test/phone/message', function(req, res) {
+    
+    phone.sendSMS("+12054820430", "Test 123");
+    
+    res.send('<html><body><h1>Hello Phone Message</h1></body></html>');
+});
+
+app.get('/test/phone/transcribe', function(req, res) {
+    
+    phone.transcribeAudio("https://api.twilio.com/2010-04-01/Accounts/AC91c7a46e6f657e3f6c29a725d8f12d98/Recordings/REea4efe4e808828795364d314d82aa2e6");
+    
+    res.send('<html><body><h1>Hello Phone Transcribe</h1></body></html>');
+});
+
+app.get('/test/phone/transcribe/callback', function(req, res) {
+    
+    console.log("Transcription Callback: " + req.query.TranscriptionText)
+    
+    res.send('<html><body><h1>Hello Phone Transcribe Callback</h1></body></html>');
 });

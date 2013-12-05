@@ -22,7 +22,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
              .state('admin', {
                 url: '/admin',
                 templateUrl: '/templates/admin.html',
-                controller: 'loanCtrl'
+                controller: 'adminCtrl'
             });
 });
 
