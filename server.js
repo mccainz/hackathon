@@ -9,10 +9,15 @@ app.use('/',express.static(__dirname+'/app/public'));
 app.listen(process.env.PORT);
 console.log('Express server started on port %s', process.env.PORT);
 
+app.get('/phone/capabilityToken', function(req, res) {
+    res.send(phone.getCapabilityToken());
+});
+
+// Test methods for debugging
+
 app.get('/hello', function(req, res){
     res.send('<html><body><h1>Hello World</h1></body></html>');
 });
-
 
 app.get('/test/ipp', function(req, res) {
     // var processInstanceOID = ipp.startLoanApplicationProcess({});
@@ -34,6 +39,13 @@ app.get('/test/phone/message', function(req, res) {
     phone.sendSMS("+12054820430", "Test 123");
     
     res.send('<html><body><h1>Hello Phone Message</h1></body></html>');
+});
+
+app.get('/test/phone/call', function(req, res) {
+    
+    phone.makeCall('+12054086747');
+    
+    res.send('<html><body><h1>Hello Phone Call</h1></body></html>');
 });
 
 app.get('/test/phone/transcribe', function(req, res) {

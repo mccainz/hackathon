@@ -1,1 +1,69 @@
 <button type="button" class="btn btn-primary" ng-click="test()">Hello</button>
+
+<button class="call" onclick="call();">
+    Call
+</button>
+
+<button class="hangup" onclick="hangup();">
+    Hangup
+</button>
+
+<p>
+    <a href="/qs2">&lt;&lt; Example 2</a> | <a href="/qs4">Example 4 &gt;&gt;</a>
+</p>
+
+<script type="text/javascript">
+    var capabilityToken = "";
+
+    $.ajax({
+        url: '/phone/capabilityToken', 
+        async: false,
+        success: function(data) {
+            console.log("Capability Token: " + capabilityToken);
+            capabilityToken = data;
+        }
+    });
+
+    Twilio.Device.setup(capabilityToken, {debug: true, rtc: false});
+
+    Twilio.Device.ready(function (device) {
+        $("#log").text("Ready");
+    });
+
+    Twilio.Device.error(function (error) {
+        $("#log").text("Error: " + error.message);
+    });
+
+    Twilio.Device.connect(function (conn) {
+        $("#log").text("Successfully established call");
+        
+        // Conference other users
+        $.ajax({
+            url: '/test/phone/call', 
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    });
+
+    Twilio.Device.disconnect(function (conn) {
+        $("#log").text("Call ended");
+    });
+
+    /* Listen for incoming connections */
+    Twilio.Device.incoming(function (conn) {
+        $("#log").text("Incoming connection from " + conn.parameters.From);
+        // accept the incoming connection and start two-way audio
+        conn.accept();
+    });
+
+    function call() {
+        Twilio.Device.connect();
+    }
+
+    function hangup() {
+        Twilio.Device.disconnectAll();
+    }
+</script>
+
+<div id="log">Loading pigeons...</div>
