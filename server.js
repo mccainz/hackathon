@@ -42,8 +42,9 @@ app.get('/test/phone/message', function(req, res) {
 });
 
 app.get('/test/phone/call', function(req, res) {
-    
-    phone.makeCall('+12054086747');
+    var dest=req.query.number;
+    console.log("Destination:" + dest);
+    phone.makeCall(dest);
     
     res.send('<html><body><h1>Hello Phone Call</h1></body></html>');
 });

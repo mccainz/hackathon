@@ -29,6 +29,7 @@ var TRANSCRIBE_CALLBACK_METHOD = "GET";
 
 var getCapabilityToken = function() {
     var capability = new twilioClient.Capability(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+    capability.allowClientIncoming('jenny');
 
     //This is a TwiML app SID configured with a voice URL
     //https://www.twilio.com/user/account/apps
@@ -61,9 +62,11 @@ var makeCall = function(number, url) {
         url: 'http://twimlets.com/echo?Twiml=%3CResponse%3E%0A%20%20%20%20%3CSay%3EJoining%20a%20conference%20room%3C%2FSay%3E%0A%20%20%20%20%3CDial%3E%0A%20%20%20%20%20%20%20%20%3CConference%3EMyRoom%3C%2FConference%3E%0A%20%20%20%20%3C%2FDial%3E%0A%3C%2FResponse%3E&' // A URL that produces an XML document (TwiML) which contains instructions for the call
 
     }, function(err, responseData) {
-    
+        console.log(err);
         //executed when the call has been initiated.
-        console.log(responseData.from);
+        if(!err){
+            console.log(responseData.from);
+        }
     });
 }
 
