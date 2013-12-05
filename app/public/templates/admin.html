@@ -1,17 +1,23 @@
-<button type="button" class="btn btn-primary" ng-click="test()">Hello</button>
 
-<button class="call" onclick="call();">
-    Call
-</button>
 
-<button class="hangup" onclick="hangup();">
-    Hangup
-</button
+
+<div class="row">
+    <div class="col-xs-12 col-md-12" style="top:-8px;">
+        <div class="label-primary">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default btn-small">Left</button>
+              <button type="button" class="btn btn-default  btn-small">Middle</button>
+              <button type="button" class="btn btn-default  btn-small">Right</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-xs-5 col-md-3">
-        <input typeahead-on-select="test(selected)" type="text" ng-model="selected" typeahead="officer as officer.name for officer in loanOfficers  | limitTo:8">
         <div class="well" style="height:100%;">
+            <input typeahead-on-select="test(selected)" type="text" ng-model="selected" typeahead="officer as officer.name for officer in loanOfficers  | limitTo:8">
+        
             <div style="display:none;" id="{{officer.id}}" style="padding-bottom:10px;" ng-repeat="officer in loanOfficers" class="panel panel-primary ">
                 <img style="height:32px;width:32px;" src="{{officer.image}}"/>
                 {{officer.name}}  
@@ -22,7 +28,9 @@
                     <i class="fa fa-desktop"></i>
                 </button>
             </div>
-            
+            <button class="hangup" onclick="hangup();">
+            Hangup
+        </button>
         </div>
     </div>
   <div class="col-xs-7 col-md-9 well">
@@ -31,23 +39,60 @@
             <div style="width:100%;" class="label">Personal Information</div>
         </div>
         <div class="panel-body">
-                <div class="col-xs-6 col-md-6 col-lg-6">
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label for="inputEmail3" class=" control-label">First Name</label>
-                            <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="First Name">
-                        </div>
-                    </form>
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="First Name">
                 </div>
-                <div class="col-xs-6 col-md-6 col-lg-6">
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Last Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Last Name">
                 </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Address-1</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 1">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Address-2</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 2">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">State</label>
+                <div class="col-sm-10">
+                    <select class="form-control input-sm" ng-model="color" ng-options="state for state in states">
+                      <option value="">{{state}}</option>
+                    </select>
+                </div>
+              </div>
+            </form>
         </div>
     </div>
+    
     <div class="panel">
         <div class="panel-heading label-primary">
             <div style="width:100%;" class="label">Loan Information</div>
         </div>
         <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label input-sm">Loan Amount</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Amount">
+                </div>
+                <label for="inputPassword3" class="col-sm-2 control-label input-sm">Purpose</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Loan Purpose">
+                </div>
+            </div>
+        </form>
         </div>
     </div>
     <div class="panel">
@@ -55,6 +100,28 @@
             <div style="width:100%;" class="label">Employment And Fincncial Information</div>
         </div>
         <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label input-sm">Employer</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Current Employer">
+                    </div>
+                    <label for="inputPassword3" class="col-sm-2 control-label input-sm">Hire Date</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="YYYY-MM-DD">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label input-sm">Income</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Gross Annual Income">
+                    </div>
+                    <label for="inputPassword3" class="col-sm-2 control-label input-sm">Work Phone</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Work Phone #">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
   </div>
