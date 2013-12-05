@@ -18,17 +18,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 url: '/loan',
                 templateUrl: '/templates/loan.html',
                 controller: 'loanCtrl'
+            })
+             .state('admin', {
+                url: '/admin',
+                templateUrl: '/templates/admin.html',
+                controller: 'loanCtrl'
             });
 });
 
 app.controller("homeCtrl",function($scope){
     $scope.title="KAZIO";
-
 });
-
 
 app.controller("loanCtrl",function($scope){
     $scope.title="KAZIO";
+});
 
+app.controller("adminCtrl",function($scope){
+    $scope.test=function(){
+        alert("hello World");
+    };
 });
 
