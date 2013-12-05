@@ -19,15 +19,15 @@
             <span class="icon-bar"></span>
           </button>
           <a href="http://www.w3.org/html/logo/">
-<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-multimedia-performance.png" width="180" height="50" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Multimedia, and Performance &amp; Integration" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Multimedia, and Performance &amp; Integration">
-</a>
+        <img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-multimedia-performance.png" width="180" height="50" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Multimedia, and Performance &amp; Integration" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Multimedia, and Performance &amp; Integration">
+        </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active"><a ui-sref="home">Home</a></li>
+            <li><a ui-sref="loan">Loans</a></li>
             <li><a href="#">Link</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -107,7 +107,6 @@
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
-
       <div ui-view=""></div>
     </body>
 
@@ -117,6 +116,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.js"></script>
     <script src="scripts/libs/angular.ui.router.js"></script>
     <script src="scripts/libs/underscore.js"></script>
+    <script src="scripts/libs/simplewebRTC.latest.js"></script>
     <script type="text/javascript" src="//static.twilio.com/libs/twiliojs/1.1/twilio.min.js"></script>
     <script src="scripts/app.js"></script>
     

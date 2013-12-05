@@ -13,10 +13,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 url: '/',
                 templateUrl: '/templates/home.html',
                 controller: 'homeCtrl'
+            })
+            .state('loan', {
+                url: '/loan',
+                templateUrl: '/templates/loan.html',
+                controller: 'loanCtrl'
             });
 });
 
 app.controller("homeCtrl",function($scope){
+    $scope.title="KAZIO";
+
+});
+
+app.controller("loanCtrl",function($scope){
     $scope.title="KAZIO";
 
 });
