@@ -26,7 +26,9 @@ app.controller("homeCtrl",function($scope){
 
 });
 
+
 app.controller("loanCtrl",function($scope){
     $scope.title="KAZIO";
 
 });
+
