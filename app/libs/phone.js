@@ -2,8 +2,8 @@
     Module which exposes methods assisting with phone integration
 */
 
-var BASE_URL = "https://hackathon-local-c9-nair_anoop.c9.io";
-// var BASE_URL = "https://np-compete.herokuapp.com";
+// var BASE_URL = "https://hackathon-local-c9-nair_anoop.c9.io";
+var BASE_URL = "https://np-compete.herokuapp.com";
 
 // Twilio configuration
 // These vars are your accountSid and authToken from twilio.com/user/account
