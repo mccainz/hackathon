@@ -1,5 +1,6 @@
 var ipp = require('./app/libs/ipp');
 var phone = require('./app/libs/phone');
+var db = require('./app/libs/db');
 
 var rest = require('restler');
 
@@ -52,7 +53,6 @@ app.get('/phone/call', function(req, res) {
 
 app.get('/phone/recordingCallback', function(req, res){
     
-    console.log(req.query);
     console.log(req.query.RecordingUrl);
 
     // Transcribe the received audio URL
@@ -99,13 +99,20 @@ app.get('/phone/transcribeCallback', function(req, res) {
         var transcriptionText = req.query.TranscriptionText; // "Test 1234";
         console.log("Transcription Callback: " + transcriptionText);
         
-        // Get base64 encoded transcription text
-        base64String = new Buffer(transcriptionText).toString('base64');
-        console.log(base64String); // "SGVsbG8gMTIz"
-
         // Get audio URL
         var audioUrl = req.query.AudioUrl; // "https://api.twilio.com/2010-04-01/Accounts/AC91c7a46e6f657e3f6c29a725d8f12d98/Recordings/REea4efe4e808828795364d314d82aa2e6.mp3";
         console.log("Audio URL: " + audioUrl);
+
+        // Get other transcription attributes
+        var sid = req.query.sid;
+        var date_created = req.query.date_created;
+        var duration = req.query.duration;
+        var uri = req.query.uri;
+
+
+        // Get base64 encoded transcription text
+        base64String = new Buffer(transcriptionText).toString('base64');
+        console.log(base64String); // "SGVsbG8gMTIz"
 
         // Get base64 encoded audio file
         rest.get(audioUrl, {
@@ -125,7 +132,18 @@ app.get('/phone/transcribeCallback', function(req, res) {
         var documentId = ipp.addDocumentToProcess(processInstanceOid, documentInfo);
         console.log("documentId: " + documentId);*/
 
-        // Send both files to Mongo
+        // Send Transcription text to Mongo
+        var transcriptionEntry = {
+            "sid": sid,
+            "date_created": date_created,
+            "audio_url": audioUrl,
+            "transcription_text": transcriptionText,
+            "duration": duration,
+            "uri": uri
+        };
+        
+        db.init();
+        db.createTranscription(transcriptionEntry);
     }
     
     res.send('<html><body><h1>Hello Phone Transcribe Callback</h1></body></html>');
@@ -134,6 +152,23 @@ app.get('/phone/transcribeCallback', function(req, res) {
 // Test methods for debugging
 
 app.get('/test/hello', function(req, res){
+    res.send('<html><body><h1>Hello World</h1></body></html>');
+});
+
+app.get('/test/db', function(req, res){
+    
+    var sample = {
+        "sid": "a",
+        "date_created": "b",
+        "audio_url": "c",
+        "transcription_text": "d",
+        "duration": "e",
+        "uri": "f"
+    };
+    
+    db.init();
+    db.createTranscription(sample);
+    
     res.send('<html><body><h1>Hello World</h1></body></html>');
 });
 
