@@ -98,7 +98,7 @@ var joinNumberToConference = function(number, url) {
 }
 
 var transcribeAudio = function(audioURL) {
-    // return;
+    return;
     
     telApiClient.create(
         'transcriptions',
