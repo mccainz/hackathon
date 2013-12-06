@@ -103,23 +103,20 @@ app.get('/phone/transcribeCallback', function(req, res) {
         var audioUrl = req.query.AudioUrl; // "https://api.twilio.com/2010-04-01/Accounts/AC91c7a46e6f657e3f6c29a725d8f12d98/Recordings/REea4efe4e808828795364d314d82aa2e6.mp3";
         console.log("Audio URL: " + audioUrl);
 
-        // Get other transcription attributes
-        var sid = req.query.sid;
-        var date_created = req.query.date_created;
-        var duration = req.query.duration;
-        var uri = req.query.uri;
+        // Get Transcription Sid
+        var sid = req.query.TranscriptionSid;
 
 
         // Get base64 encoded transcription text
         base64String = new Buffer(transcriptionText).toString('base64');
-        console.log(base64String); // "SGVsbG8gMTIz"
+        // console.log(base64String); // "SGVsbG8gMTIz"
 
         // Get base64 encoded audio file
         rest.get(audioUrl, {
             decoding: "buffer",
         }).on('complete', function(data) {
             base64String = data.toString('base64');
-            console.log(base64String);
+            // console.log(base64String);
         });
         
         // Send both files to IPP
@@ -135,11 +132,11 @@ app.get('/phone/transcribeCallback', function(req, res) {
         // Send Transcription text to Mongo
         var transcriptionEntry = {
             "sid": sid,
-            "date_created": date_created,
+            //"date_created": date_created,
             "audio_url": audioUrl,
             "transcription_text": transcriptionText,
-            "duration": duration,
-            "uri": uri
+            //"duration": duration,
+            //"uri": uri
         };
         
         db.init();

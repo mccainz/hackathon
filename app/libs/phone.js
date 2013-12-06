@@ -98,6 +98,8 @@ var joinNumberToConference = function(number, url) {
 }
 
 var transcribeAudio = function(audioURL) {
+    return;
+    
     telApiClient.create(
         'transcriptions',
         {
