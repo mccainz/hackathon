@@ -70,7 +70,7 @@ app.get('/phone/transcribeCallback', function(req, res) {
         console.log("Transcription Callback: " + req.query.TranscriptionText);
 
         // Get audio URL
-        console.log("Audio URL: " + req.query.AudioURL);
+        console.log("Audio URL: " + req.query.AudioUrl);
 
         // Send both files to IPP
         /*var processInstanceOid = 674;
