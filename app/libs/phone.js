@@ -25,7 +25,7 @@ var TELAPI_AUTH_TOKEN = '6d849366b4f84d60990e4c1cd2828096';
 
 var telApiClient = new TelApiClient(TELAPI_ACCOUNT_SID, TELAPI_AUTH_TOKEN);
 
-var TRANSCRIBE_CALLBACK_URL = "https://hackathon-local-c9-nair_anoop.c9.io/phone/transcribeCallback";
+var TRANSCRIBE_CALLBACK_URL = "/phone/transcribeCallback";
 var TRANSCRIBE_CALLBACK_METHOD = "GET";
 
 var getCapabilityToken = function() {
