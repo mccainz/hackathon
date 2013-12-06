@@ -24,7 +24,7 @@ var TELAPI_ACCOUNT_SID = 'AC91c7a46e6f657e3f6c29a725d8f12d98';
 var TELAPI_AUTH_TOKEN = '59ba3880b91e61ed8c546fc6414f19b5';
 var telApiClient = new TelApiClient(TELAPI_ACCOUNT_SID, TELAPI_AUTH_TOKEN);
 
-var TRANSCRIBE_CALLBACK_URL = "/test/phone/transcribe/callback";
+var TRANSCRIBE_CALLBACK_URL = "/phone/transcribeCallback";
 var TRANSCRIBE_CALLBACK_METHOD = "GET";
 
 var getCapabilityToken = function() {
@@ -54,7 +54,8 @@ var sendSMS = function(to, message) {
     });
 }
 
-var makeCall = function(number, url) {
+var joinNumberToConference = function(number, url) {
+    
     //Place a phone call, and respond with TwiML instructions from the given URL
     twilio.makeCall({
         to: number, // Any number Twilio can call
@@ -63,7 +64,7 @@ var makeCall = function(number, url) {
         /*
             <Response>
             	<Say voice="alice" language="en-GB">Thank you for joining the conference.</Say>
-            	<Dial record="true" action="/phone/recordingCallback" method="GET">
+            	<Dial record="true" action="http://np-compete.herokuapp.com/phone/recordingCallback" method="GET">
             		<Conference>MyRoom</Conference>
             	</Dial>
             </Response>
@@ -97,6 +98,6 @@ var transcribeAudio = function(audioURL) {
 }
 
 module.exports.sendSMS = sendSMS;
-module.exports.makeCall = makeCall;
+module.exports.joinNumberToConference = joinNumberToConference;
 module.exports.transcribeAudio = transcribeAudio;
 module.exports.getCapabilityToken = getCapabilityToken;
