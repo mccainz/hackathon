@@ -167,8 +167,9 @@
     });
     
     var phoneCall=function(that){
+      event.cancelBubble=true;
+      event.stopPropagation();
       console.log($(that).attr("data-number"));
-      
       $.ajax({
           type:"GET",
           url:"/phone/call",
