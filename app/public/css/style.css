@@ -49,3 +49,11 @@ body{
     position: absolute;
     z-index:9999;
 }
+
+.ipp-lbl{
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color:white;
+    position:relative;
+    top:5px;
+}

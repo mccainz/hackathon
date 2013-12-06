@@ -2,12 +2,17 @@
 
 
 <div class="row">
-    <div class="col-xs-12 col-md-12" style="top:-8px;">
-        <div class="label-primary">
-            <div class="btn-group">
-              <button type="button" class="btn btn-default btn-small">Left</button>
-              <button type="button" class="btn btn-default  btn-small">Middle</button>
-              <button type="button" class="btn btn-default  btn-small">Right</button>
+    <div class="col-xs-12 col-md-12 label-primary" style="top:-10px;position:relative;">
+        <div class="row">
+            <div class="col-xs-6">
+                <i style="color:white;position:relative;top:5px;" class="fa fa-gear"></i>
+                <span class="ipp-lbl">LOAN APPROVAL #903</span>
+            </div>
+            <div class="btn-toolbar col-xs-6"  role="toolbar">
+                <div class="btn-group btn-group-sm pull-right">
+                    <button type="button" class="btn btn-success">Approve</button>
+                    <button type="button" class="btn btn-danger">Reject</button> 
+                </div>
             </div>
         </div>
     </div>
@@ -16,21 +21,39 @@
 <div class="row">
     <div class="col-xs-5 col-md-3">
         <div class="well" style="height:100%;">
-            <input typeahead-on-select="test(selected)" type="text" ng-model="selected" typeahead="officer as officer.name for officer in loanOfficers  | limitTo:8">
-        
-            <div style="display:none;" id="{{officer.id}}" style="padding-bottom:10px;" ng-repeat="officer in loanOfficers" class="panel panel-primary ">
-                <img style="height:32px;width:32px;" src="{{officer.image}}"/>
-                {{officer.name}}  
-                <button onclick="phoneCall(this)" data-number="{{officer.phone}}"   type="button" class="btn btn-default btn-xs">
-                    <i class="fa fa-phone"></i>
-                </button>
-                <button onclick="phoneCall(this)" data-number="{{officer.browser}}" type="button" class="btn btn-default btn-xs">
-                    <i class="fa fa-desktop"></i>
-                </button>
+            <div class="panel">
+                <div class="panel-heading label-primary" >
+                    <div style="width:100%;" class="label">
+                         <span style="padding-right:5px;">Participants</span><input typeahead-on-select="test(selected)" type="text" ng-model="selected" typeahead="officer as officer.name for officer in loanOfficers  | limitTo:8">
+                    </div>
+                </div>
+                
+                
+                <div style="display:none" id="{{officer.id}}"  ng-repeat="officer in loanOfficers" class="panel">
+                    <div style="color:white;" class="panel-heading label-default">
+                        <div style="width:100%;" class="label">
+                            <img class="img-rounded" style="height:48px;width:48px;" src="{{officer.image}}"/>
+                            <span class="ipp-lbl">{{officer.name}}</span>
+                        </div>
+                    </div>
+                    <div class="panel-bodyX">
+                        
+                        <button onclick="phoneCall(this)" data-number="{{officer.phone}}"   type="button" class="btn btn-default btn-xs">
+                        <i class="fa fa-phone"></i>
+                    </button>
+                    <button onclick="phoneCall(this)" data-number="{{officer.browser}}" type="button" class="btn btn-default btn-xs">
+                        <i class="fa fa-desktop"></i>
+                    </button>
+                    </div>
+                </div>
+                <div class="panel-footer label-primary">
+                    <button class="btn btn-danger" onclick="hangup();">
+                        <i style="font-size:1.5em;" class="fa fa-phone">
+                        </i>
+                        <span style="font-size:1.0em;"  class="label">Hang Up</span>
+                    </button>
+                </div>
             </div>
-            <button class="hangup" onclick="hangup();">
-            Hangup
-        </button>
         </div>
     </div>
   <div class="col-xs-7 col-md-9 well">
@@ -95,6 +118,7 @@
         </form>
         </div>
     </div>
+    
     <div class="panel">
         <div class="panel-heading label-primary">
             <div style="width:100%;" class="label">Employment And Fincncial Information</div>
