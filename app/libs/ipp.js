@@ -15,12 +15,12 @@ var IPP_USER = "motu";
 var IPP_PASSWORD = "motu";
 
 // IOD solution parameters
-var PARTITION_ID = "fcd8e808-fb63-465d-8e7a-1a772c6ece2c";
+var PARTITION_ID = "6055908c-4192-4e2c-bbdc-8526d8d8de4b";
 
-var LOAN_APPLICATION_MODEL = "Model";
-var LOAN_APPLICATION_PROCESS = "Process1";
+var LOAN_APPLICATION_MODEL = "NewAccount";
+var LOAN_APPLICATION_PROCESS = "NewAccount";
 
-var DOCUMENT_ADD_MODEL = "DocumentAddTest";
+var DOCUMENT_ADD_MODEL = "DocumentAdd";
 var DOCUMENT_ADD_PROCESS = "AddDocument";
 
 var startLoanApplicationProcess = function(data) {
@@ -43,18 +43,17 @@ var startLoanApplicationProcess = function(data) {
         'Content-Type': CONTENT_TYPE
       }
     }).on('complete', function(result, response) {
-        console.log("complete");
+        // console.log("complete");
     })
     .on('success', function(data, response) {
-        console.log("success");
 
         // parse piOID from response
-        // sample response: https://www.infinity.com/iod72-0/services/rest/engine/processes/Process1?piOID=679&stardust-bpm-partition=fcd8e808-fb63-465d-8e7a-1a772c6ece2c&stardust-bpm-model=Model
+        // sample response: https://www.infinity.com/iod72-0/services/rest/engine/processes/Process1?piOID=679&stardust-bpm-partition=6055908c-4192-4e2c-bbdc-8526d8d8de4&stardust-bpm-model=Model
         var regex = /piOID=([0-9]+)&?/;
         var results = regex.exec(response.rawEncoded);
-        console.log("regex results" + results[1]);
-        
+
         processInstanceOID = results[1];
+        console.log("Started processInstanceOID: " + processInstanceOID);
     })
     .on('fail', function(data, response) {
         console.log("fail");
@@ -85,9 +84,11 @@ var addDocumentToProcess = function(processInstanceOID, documentInfo) {
             '<Args xmlns="http://eclipse.org/stardust/rest/v2012a/types">' + 
             '<FormalParameter_1 xmlns="http://www.w3.org/2001/XMLSchema">{processInstanceOID}</FormalParameter_1>' + 
             '<FormalParameter_2 xmlns="http://www.w3.org/2001/XMLSchema">{fileName}</FormalParameter_2>' + 
+            '<FormalParameter_4 xmlns="http://www.w3.org/2001/XMLSchema">{base64Content}</FormalParameter_4>' + 
             '</Args>';
     payload = payload.replace("{processInstanceOID}", processInstanceOID);
     payload = payload.replace("{fileName}", documentInfo.fileName);
+    payload = payload.replace("{base64Content}", documentInfo.base64Content);
     
     rest.post(url, {
       username: IPP_USER,
@@ -97,18 +98,17 @@ var addDocumentToProcess = function(processInstanceOID, documentInfo) {
         'Content-Type': CONTENT_TYPE
       }
     }).on('complete', function(result, response) {
-        console.log("complete");
+        // console.log("complete");
     })
     .on('success', function(data, response) {
-        console.log("success");
 
         // parse piOID from response
-        // sample response: https://www.infinity.com/iod72-0/services/rest/engine/processes/Process1?piOID=679&stardust-bpm-partition=fcd8e808-fb63-465d-8e7a-1a772c6ece2c&stardust-bpm-model=Model
+        // sample response: https://www.infinity.com/iod72-0/services/rest/engine/processes/Process1?piOID=679&stardust-bpm-partition=6055908c-4192-4e2c-bbdc-8526d8d8de4&stardust-bpm-model=Model
         var regex = /piOID=([0-9]+)&?/;
         var results = regex.exec(response.rawEncoded);
-        console.log("regex results" + results[1]);
         
-        console.log(results[1]);
+        processInstanceOID = results[1];
+        console.log("Started processInstanceOID: " + processInstanceOID);
     })
     .on('fail', function(data, response) {
         console.log("fail");

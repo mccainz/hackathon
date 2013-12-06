@@ -1,6 +1,8 @@
 var ipp = require('./app/libs/ipp');
 var phone = require('./app/libs/phone');
 
+var rest = require('restler');
+
 var express = require('express'),
     app = express();
     
@@ -10,9 +12,11 @@ app.listen(process.env.PORT);
 console.log('Express server started on port %s', process.env.PORT);
 
 app.get('/loan/start', function(req, res) {
-     res.send("fini");
-    // var processInstanceOID = ipp.startLoanApplicationProcess({});
-    // console.log("processInstanceOID: " + processInstanceOID);
+
+    var processInstanceOID = ipp.startLoanApplicationProcess({});
+    console.log("processInstanceOID: " + processInstanceOID);
+    
+    res.send("fini");
 });
 
 app.get('/loan/approve', function(req, res) {
@@ -60,22 +64,62 @@ app.get('/phone/recordingCallback', function(req, res){
     res.send(response.toString());
 });
 
+/*var getBinaryContentAsBase64 = function (url, callback) {
+    // Required 'request' module
+    var request = require('request');
+
+    // Make request to our image url
+    request({url: url, encoding: null}, function (err, res, body) {
+        if (!err && res.statusCode == 200) {
+            // So as encoding set to null then request body became Buffer object
+            var base64String = body.toString('base64');
+            if (typeof callback == 'function') {
+                callback(base64String);
+            }
+        } else {
+            throw new Error('Can not download image');
+        }
+    });
+};
+
+getBinaryContentAsBase64(audioUrl, function (base64String) {
+    console.log(base64String);
+});
+*/
+
 app.get('/phone/transcribeCallback', function(req, res) {
     
     var status = req.query.TranscriptionStatus;
     console.log("Transcription Callback: " + status)
     
     if (status == "completed") {
+        var base64String = "";
+
         // Get transcription text
-        console.log("Transcription Callback: " + req.query.TranscriptionText);
+        var transcriptionText = req.query.TranscriptionText; // "Test 1234";
+        console.log("Transcription Callback: " + transcriptionText);
+        
+        // Get base64 encoded transcription text
+        base64String = new Buffer(transcriptionText).toString('base64');
+        console.log(base64String); // "SGVsbG8gMTIz"
 
         // Get audio URL
-        console.log("Audio URL: " + req.query.AudioUrl);
+        var audioUrl = req.query.AudioUrl; // "https://api.twilio.com/2010-04-01/Accounts/AC91c7a46e6f657e3f6c29a725d8f12d98/Recordings/REea4efe4e808828795364d314d82aa2e6.mp3";
+        console.log("Audio URL: " + audioUrl);
 
+        // Get base64 encoded audio file
+        rest.get(audioUrl, {
+            decoding: "buffer",
+        }).on('complete', function(data) {
+            base64String = data.toString('base64');
+            console.log(base64String);
+        });
+        
         // Send both files to IPP
         /*var processInstanceOid = 674;
         var documentInfo = {
-                "fileName": "abc.txt"
+            "fileName": "recording.mp3"
+            "base64Content": base64String
         };
         
         var documentId = ipp.addDocumentToProcess(processInstanceOid, documentInfo);
