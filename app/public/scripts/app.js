@@ -69,7 +69,7 @@ app.controller("adminCtrl",function($scope,$http,promiseObj){
         $http({
           method: 'GET', 
           url: '/loan/approve',
-          params:{dest: "+12054820430"}
+          params:{dest: "+12055720152"}
         })
         .success(function(){
         console.log("connected");
@@ -112,11 +112,18 @@ app.controller("adminCtrl",function($scope,$http,promiseObj){
                 "image":"images/anoop.JPG"
             },
             {   
-                "name":"Haggert, Kyle",
+                "name":"Hargett, Kyle",
                 "phone":"+12055720152",
                 "browser":"client:Kyle",
                 "id":"Kyle",
                 "image":"images/kyle.JPG"
+            },
+            {
+                "name" :"Penavic, Suzanne",
+                "phone":"+12054086747",
+                "browser": "client:Suzanne",
+                "id": "Suzanne",
+                "image":"images/suzanne.JPG"
             }
         ];
 });
