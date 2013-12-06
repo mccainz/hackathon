@@ -10,7 +10,7 @@
             </div>
             <div class="btn-toolbar col-xs-6"  role="toolbar">
                 <div class="btn-group btn-group-sm pull-right">
-                    <button type="button" class="btn btn-success">Approve</button>
+                    <button ng-click="approveLoan()" type="button" class="btn btn-success">Approve</button>
                     <button type="button" class="btn btn-danger">Reject</button> 
                 </div>
             </div>
@@ -66,25 +66,25 @@
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="First Name">
+                  <input type="text" value="John" class="form-control input-sm" id="inputEmail3" placeholder="First Name">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Last Name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Last Name">
+                  <input type="text"  value="Doe" class="form-control input-sm" id="inputPassword3" placeholder="Last Name">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Address-1</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 1">
+                  <input type="text"  value="123 MockingBird Lane" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 1">
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">Address-2</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 2">
+                  <input type="text"  value="Suite #309" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 2">
                 </div>
               </div>
               <div class="form-group">
@@ -108,11 +108,11 @@
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label input-sm">Loan Amount</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Amount">
+                  <input type="text"  value="20000" class="form-control input-sm" id="inputPassword3" placeholder="Amount">
                 </div>
-                <label for="inputPassword3" class="col-sm-2 control-label input-sm">Purpose</label>
+                <label for="inputPassword3"  class="col-sm-2 control-label input-sm">Purpose</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Loan Purpose">
+                  <input type="text" value="Home Improvement" class="form-control input-sm" id="inputPassword3" placeholder="Loan Purpose">
                 </div>
             </div>
         </form>
@@ -148,6 +148,7 @@
             </form>
         </div>
     </div>
+    
   </div>
 </div>
 
@@ -170,7 +171,7 @@
       
       $.ajax({
           type:"GET",
-          url:"/test/phone/call",
+          url:"/phone/call",
           data: {number: $(that).attr("data-number")},
       });  
     };
@@ -185,17 +186,7 @@
         $("#log").text("Error: " + error.message);
     });
 
-    Twilio.Device.connect(function (conn) {
-        $("#log").text("Successfully established call");
-        
-        // Conference other users
-        $.ajax({
-            url: '/test/phone/call', 
-            success: function(data) {
-                console.log(data);
-            }
-        });
-    });
+
 
     Twilio.Device.disconnect(function (conn) {
         $("#log").text("Call ended");
@@ -208,9 +199,7 @@
         conn.accept();
     });
 
-    function call() {
-        Twilio.Device.connect();
-    }
+
 
     function hangup() {
         Twilio.Device.disconnectAll();

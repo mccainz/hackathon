@@ -47,15 +47,27 @@ app.controller("adminCtrl",function($scope,$http,promiseObj){
     $scope.states=['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon', 'Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah', 'Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
     $scope.capabilityToken=promiseObj.data;
     
-     $scope.test=function(val){
+    $scope.test=function(val){
          $("#" + val.id).css("display","block");
-     };
+    };
 
-    $scope.phoneCall=function(officer,mode){
+    $scope.approveLoan=function(){
+        console.log("approving loan");
+        $http({
+          method: 'GET', 
+          url: '/loan/approve',
+          params:{dest: "+12054820430"}
+        })
+        .success(function(){
+        console.log("connected");
+      });  
+    };
+    
+    $scope.phoneCallX=function(officer,mode){
       var data=(mode==="phone")?officer.phone:officer.browser;
       $http({
           method: 'GET', 
-          url: '/test/phone/call',
+          url: '/phone/call',
           params:{number: data}
       })
       .success(function(){
@@ -65,7 +77,7 @@ app.controller("adminCtrl",function($scope,$http,promiseObj){
     };
     
     Twilio.Device.connect(function (conn) {
-        $http({method: 'GET', url: '/test/phone/call'})
+        $http({method: 'GET', url: '/phone/call'})
         .success(function(){
             console.log("connected");
         });

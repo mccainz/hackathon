@@ -1,94 +1,121 @@
 <div class="row">
-
-    <div class="col-xs-12 col-md-8 well">
-    
-        <div class="panel">
-            <div class="panel-heading label-primary">
-                <div style="width:100%;" class="label">Personal Information</div>
+    <div class="col-xs-5 col-md-3">
+        <div class="well" style="height:100%;">
+                   <div class="panel">
+            <div class="panel-heading">
+                Need Help?
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="First Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Last Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Last Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Address-1</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 1">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Address-2</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 2">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">State</label>
-                    <div class="col-sm-10">
-                        <select class="form-control input-sm" ng-model="color" ng-options="state for state in states">
-                          <option value="">{{state}}</option>
-                        </select>
-                    </div>
-                  </div>
-                </form>
+              <div class="well">
+                  <button class="btn btn-info"><i class="fa fa-phone"></i>Call Us</button>
+              </div>
+              <div class="well">
+                  <button class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                  <i class="fa fa-video-camera"></i> 
+                  Live Conference
+                  </button>
+              </div>
             </div>
         </div>
-        
-        <div class="panel">
-            <div class="panel-heading label-primary">
-                <div style="width:100%;" class="label">Personal Information</div>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="First Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Last Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Last Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Address-1</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 1">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Address-2</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 2">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">State</label>
-                    <div class="col-sm-10">
-                        <select class="form-control input-sm" ng-model="color" ng-options="state for state in states">
-                          <option value="">{{state}}</option>
-                        </select>
-                    </div>
-                  </div>
-                </form>
-            </div>
+        </div>
     </div>
-        
+  <div class="col-xs-7 col-md-9 well">
+    <div class="panel">
+        <div class="panel-heading label-primary">
+            <div style="width:100%;" class="label">Personal Information</div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="First Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Last Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Address-1</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 1">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Address-2</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Home Address 2">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">State</label>
+                <div class="col-sm-10">
+                    <select class="form-control input-sm" ng-model="color" ng-options="state for state in states">
+                      <option value="">{{state}}</option>
+                    </select>
+                </div>
+              </div>
+            </form>
+        </div>
     </div>
+    
+    <div class="panel">
+        <div class="panel-heading label-primary">
+            <div style="width:100%;" class="label">Loan Information</div>
+        </div>
+        <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label input-sm">Loan Amount</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Amount">
+                </div>
+                <label for="inputPassword3" class="col-sm-2 control-label input-sm">Purpose</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Loan Purpose">
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <div class="panel-heading label-primary">
+            <div style="width:100%;" class="label">Employment And Fincncial Information</div>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label input-sm">Employer</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Current Employer">
+                    </div>
+                    <label for="inputPassword3" class="col-sm-2 control-label input-sm">Hire Date</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="YYYY-MM-DD">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label input-sm">Income</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Gross Annual Income">
+                    </div>
+                    <label for="inputPassword3" class="col-sm-2 control-label input-sm">Work Phone</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control input-sm" id="inputPassword3" placeholder="Work Phone #">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+  </div>
+</div>
   
-    <div class="col-xs-6 col-md-4">
+    <!--div class="col-xs-6 col-md-4">
         <div class="panel">
             <div class="panel-heading">
                 Need Help?
@@ -105,34 +132,26 @@
               </div>
             </div>
         </div>
-    </div>
+    </div-->
     
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+    <!-- Modal-->
+    <div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div style="width:100%;height:100%;" class="modal-dialog">
+      
         <div class="modal-content">
           <div class="modal-header">
-          
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            <p id="subTitle">(https required for screensharing to work)</p>
-            <form id="createRoom">
-                <input id="sessionInput"/>
-                <button type="submit">Create it!</button>
-            </form>
+            <h4 class="modal-title" id="myModalLabel">Video Conference</h4>
+            
           </div>
           
           <div class="modal-body">
-            
-            <div style="background-color:#000000;width:550px;height:413px;" >
-                <div id="remotes"></div>
-                <video id="localVideo"></video>
-            </div>
+            <div id="remotes"></div>
           </div>
-          
+          <div class="label-default"><video id="localVideo"></video></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="activateVideoButton">Activate Video</button>
-            <button type="button" class="btn btn-primary" id="screenShareButton">share screen</button>
+            <button type="button" class="btn btn-primary" id="screenShareButton">Share screen</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
           
@@ -142,72 +161,61 @@
 </div>
 
 <script>
+
+
+            
     $("#activateVideoButton").on("click",function(){
-    // grab the room from the URL
-    var room = location.search && location.search.split('?')[1];
-    console.log("ROOM:" + room);
-    
-    // create our webrtc connection
-    var webrtc = new SimpleWebRTC({
-        // the id/element dom element that will hold "our" video
-        localVideoEl: 'localVideo',
-        // the id/element dom element that will hold remote videos
-        remoteVideosEl: 'remotes',
-        // immediately ask for camera access
-        autoRequestMedia: true,
-        log: true
-    });
-    console.log("ROOM2:" + room);
-    // when it's ready, join if we got a room from the URL
-    webrtc.on('readyToCall', function () {
-        // you can name it anything
-        if (room) webrtc.joinRoom(room);
-    });
-    
-    // Since we use this twice we put it here
-    function setRoom(name) {
-        $('form').remove();
-        $('h1').text(name);
-        $('#subTitle').text('Link to join: ' + location.href);
-        $('body').addClass('active');
-    }
-    
-    if (room) {
-        console.log("ROOM3:" + room);
-        setRoom(room);
-    } else {
-        $('form').submit(function () {
-            var val = $('#sessionInput').val().toLowerCase().replace(/\s/g, '-').replace(/[^A-Za-z0-9_\-]/g, '');
-            webrtc.createRoom(val, function (err, name) {
-                var newUrl = location.pathname + '?' + name;
-                if (!err) {
-                    history.replaceState({foo: 'bar'}, null, newUrl);
-                    setRoom(name);
+        // grab the room from the URL
+        var room ="test";// location.search && location.search.split('?')[1];
+
+        // create our webrtc connection
+        var webrtc = new SimpleWebRTC({
+            // the id/element dom element that will hold "our" video
+            localVideoEl: 'localVideo',
+            // the id/element dom element that will hold remote videos
+            remoteVideosEl: 'remotes',
+            // immediately ask for camera access
+            autoRequestMedia: true,
+            log: true
+        });
+            $("#screenShareButton").on("click",function () {
+                if (webrtc.localScreen) {
+                    webrtc.stopScreenShare();
+                    setButton(true);
+                } else {
+                    webrtc.shareScreen();
+                    setButton(false);
                 }
-            });
-            return false;          
-        });
-    }
-    
-    var button = $('#screenShareButton'),
-        setButton = function (bool) {
-            button.text(bool ? 'share screen' : 'stop sharing');
-        };
-    
-    setButton(true);
-    
-    if (false/*!webrtc.screenSharingSupport*/) {
-        button[0].disabled = true;
-    } else {
-        button.click(function () {
-            if (webrtc.localScreen) {
-                webrtc.stopScreenShare();
-                setButton(true);
-            } else {
-                webrtc.shareScreen();
-                setButton(false);
-            }
-        });
-    }
     });
-    </script>
+        // when it's ready, join if we got a room from the URL
+        webrtc.on('readyToCall', function () {
+            // you can name it anything
+            if (room) webrtc.joinRoom(room);
+        });
+        
+        // Since we use this twice we put it here
+        function setRoom(name) {
+            $('#createRoom').remove();
+            $('h1').text(name);
+            $('#subTitle').text('Link to join: ' + location.href);
+            $('body').addClass('active');
+        }
+
+        if (room) {
+            setRoom(room);
+        } else {
+            $('#createRoom').submit(function () {
+                var val = $('#sessionInput').val().toLowerCase().replace(/\s/g, '-').replace(/[^A-Za-z0-9_\-]/g, '');
+                webrtc.createRoom(val, function (err, name) {
+                    var newUrl = location.pathname + '?' + name;
+                    if (!err) {
+                        history.replaceState({foo: 'bar'}, null, newUrl);
+                        setRoom(name);
+                    }
+                });
+                return false;          
+            });
+        }
+
+    });
+</script>

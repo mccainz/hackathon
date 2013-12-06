@@ -18,6 +18,10 @@ app.get('/loan/start', function(req, res) {
 app.get('/loan/approve', function(req, res) {
     
     // TODO: Approve the loan in IPP
+    var destination = req.query.dest;
+    var msg="Loan Approved!"
+    phone.sendSMS(destination,msg);
+    res.send("fini");
 });
 
 app.get('/phone/capabilityToken', function(req, res) {
@@ -36,6 +40,7 @@ app.get('/phone/message', function(req, res) {
 app.get('/phone/call', function(req, res) {
     
     var destination = req.query.number;
+    console.log(destination);
     phone.joinNumberToConference(destination);
     
     res.send('<html><body><h1>Hello Phone Call</h1></body></html>');
