@@ -35,8 +35,21 @@ app.controller("homeCtrl",function($scope){
     $scope.title="KAZIO";
 });
 
-app.controller("loanCtrl",function($scope){
+app.controller("loanCtrl",function($scope,$http){
     $scope.title="KAZIO";
+    $scope.submitLoan=function(){
+        console.log("submitting loan");
+        $http({
+          method: 'GET', 
+          url: '/loan/start'
+        })
+        .success(function(){
+            console.log("ads");
+        })
+        .error(function(err){
+            console.log(err);
+        });
+    };
 });
 
 app.controller("adminCtrl",function($scope,$http,promiseObj){
