@@ -13,6 +13,16 @@ app.get('/phone/capabilityToken', function(req, res) {
     res.send(phone.getCapabilityToken());
 });
 
+app.get('/phone/recordingCallback', function(req, res){
+    console.log(req.query);
+    console.log(req.query.RecordingUrl);
+    
+    var response = "<Response></Response>";
+
+    res.type('text/xml');
+    res.send(response.toString());
+});
+
 // Test methods for debugging
 
 app.get('/hello', function(req, res){

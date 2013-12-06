@@ -59,7 +59,16 @@ var makeCall = function(number, url) {
     twilio.makeCall({
         to: number, // Any number Twilio can call
         from: TWILIO_FROM_NUMBER, // A number you bought from Twilio and can use for outbound communication
-        url: 'http://twimlets.com/echo?Twiml=%3CResponse%3E%0A%20%20%20%20%3CSay%3EJoining%20a%20conference%20room%3C%2FSay%3E%0A%20%20%20%20%3CDial%3E%0A%20%20%20%20%20%20%20%20%3CConference%3EMyRoom%3C%2FConference%3E%0A%20%20%20%20%3C%2FDial%3E%0A%3C%2FResponse%3E&' // A URL that produces an XML document (TwiML) which contains instructions for the call
+        // A URL that produces an XML document (TwiML) which contains instructions for the call
+        /*
+            <Response>
+            	<Say voice="alice" language="en-GB">Thank you for joining the conference.</Say>
+            	<Dial record="true" action="/phone/recordingCallback" method="GET">
+            		<Conference>MyRoom</Conference>
+            	</Dial>
+            </Response>
+        */
+        url: 'http://twimlets.com/echo?Twiml=%3CResponse%3E%0A%09%3CSay%20voice%3D%22alice%22%20language%3D%22en-GB%22%3EThank%20you%20for%20joining%20the%20conference.%3C%2FSay%3E%0A%09%3CDial%20record%3D%22true%22%20action%3D%22http%3A%2F%2Fnp-compete.herokuapp.com%2Fphone%2FrecordingCallback%22%20method%3D%22GET%22%3E%0A%09%09%3CConference%3EMyRoom%3C%2FConference%3E%0A%09%3C%2FDial%3E%0A%3C%2FResponse%3E&'
 
     }, function(err, responseData) {
         console.log(err);
