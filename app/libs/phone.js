@@ -25,7 +25,7 @@ var TELAPI_AUTH_TOKEN = '6d849366b4f84d60990e4c1cd2828096';
 
 var telApiClient = new TelApiClient(TELAPI_ACCOUNT_SID, TELAPI_AUTH_TOKEN);
 
-var TRANSCRIBE_CALLBACK_URL = "/phone/transcribeCallback";
+var TRANSCRIBE_CALLBACK_URL = "http://np-compete.herokuapp.com/phone/transcribeCallback";
 var TRANSCRIBE_CALLBACK_METHOD = "GET";
 
 var getCapabilityToken = function() {
