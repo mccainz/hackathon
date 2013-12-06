@@ -120,7 +120,7 @@ app.controller("adminCtrl",function($scope,$http,promiseObj){
             },
             {
                 "name" :"Penavic, Suzanne",
-                "phone":"+12054086747",
+                "phone":"+19734897837",
                 "browser": "client:Suzanne",
                 "id": "Suzanne",
                 "image":"images/suzanne.JPG"
