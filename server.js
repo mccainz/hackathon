@@ -53,7 +53,6 @@ app.get('/phone/call', function(req, res) {
 
 app.get('/phone/recordingCallback', function(req, res){
     
-    console.log(req.query);
     console.log(req.query.RecordingUrl);
 
     // Transcribe the received audio URL
@@ -135,7 +134,7 @@ app.get('/phone/transcribeCallback', function(req, res) {
 
         // Send Transcription text to Mongo
         var transcriptionEntry = {
-            "sid": "a",
+            "sid": sid,
             "date_created": date_created,
             "audio_url": audioUrl,
             "transcription_text": transcriptionText,
