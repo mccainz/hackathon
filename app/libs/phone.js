@@ -2,6 +2,9 @@
     Module which exposes methods assisting with phone integration
 */
 
+var BASE_URL = "https://hackathon-local-c9-nair_anoop.c9.io";
+// var BASE_URL = "https://np-compete.herokuapp.com";
+
 // Twilio configuration
 // These vars are your accountSid and authToken from twilio.com/user/account
 var TWILIO_ACCOUNT_SID = 'AC91c7a46e6f657e3f6c29a725d8f12d98';
@@ -25,9 +28,10 @@ var TELAPI_AUTH_TOKEN = '6d849366b4f84d60990e4c1cd2828096';
 
 var telApiClient = new TelApiClient(TELAPI_ACCOUNT_SID, TELAPI_AUTH_TOKEN);
 
-// var TRANSCRIBE_CALLBACK_URL = "http://np-compete.herokuapp.com/phone/transcribeCallback";
-var TRANSCRIBE_CALLBACK_URL = "https://hackathon-local-c9-nair_anoop.c9.io/phone/transcribeCallback";
+var TRANSCRIBE_CALLBACK_URL = BASE_URL + "/phone/transcribeCallback";
 var TRANSCRIBE_CALLBACK_METHOD = "GET";
+
+var TWIMLETS_ECHO_BASE_URL = "http://twimlets.com/echo?Twiml=";
 
 var getCapabilityToken = function() {
     var capability = new twilioClient.Capability(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
@@ -58,23 +62,24 @@ var sendSMS = function(to, message) {
 
 var joinNumberToConference = function(number, url) {
     
+    // A URL that produces an XML document (TwiML) which contains instructions for the call
+    var twimlResponse = 
+        '<Response>' +
+        	'<Say voice="alice" language="en-GB">Thank you for joining the conference.</Say>' +
+        	'<Dial record="true" action="{BASE_URL}/phone/recordingCallback" method="GET">' +
+        		'<Conference>MyRoom</Conference>' +
+        	'</Dial>' +
+        '</Response>';
+    twimlResponse = twimlResponse.replace("{BASE_URL}", BASE_URL);
+    
+    var callUrl = TWIMLETS_ECHO_BASE_URL + encodeURIComponent(twimlResponse);
+    console.log("Call URL: " + callUrl);
+    
     //Place a phone call, and respond with TwiML instructions from the given URL
     twilio.makeCall({
         to: number, // Any number Twilio can call
         from: TWILIO_FROM_NUMBER, // A number you bought from Twilio and can use for outbound communication
-        // A URL that produces an XML document (TwiML) which contains instructions for the call
-        /*
-            <Response>
-            	<Say voice="alice" language="en-GB">Thank you for joining the conference.</Say>
-            	<Dial record="true" action="http://np-compete.herokuapp.com/phone/recordingCallback" method="GET">
-            		<Conference>MyRoom</Conference>
-            	</Dial>
-            </Response>
-        */
-        // Heroku
-        //url: 'http://twimlets.com/echo?Twiml=%3CResponse%3E%0A%09%3CSay%20voice%3D%22alice%22%20language%3D%22en-GB%22%3EThank%20you%20for%20joining%20the%20conference.%3C%2FSay%3E%0A%09%3CDial%20record%3D%22true%22%20action%3D%22http%3A%2F%2Fnp-compete.herokuapp.com%2Fphone%2FrecordingCallback%22%20method%3D%22GET%22%3E%0A%09%09%3CConference%3EMyRoom%3C%2FConference%3E%0A%09%3C%2FDial%3E%0A%3C%2FResponse%3E&'
-        
-        url: 'http://twimlets.com/echo?Twiml=%3CResponse%3E%0A%09%3CSay%20voice%3D%22alice%22%20language%3D%22en-GB%22%3EThank%20you%20for%20joining%20the%20conference.%3C%2FSay%3E%0A%09%3CDial%20record%3D%22true%22%20action%3D%22https%3A%2F%2Fhackathon-local-c9-nair_anoop.c9.io%2Fphone%2FrecordingCallback%22%20method%3D%22GET%22%3E%0A%09%09%3CConference%3EMyRoom%3C%2FConference%3E%0A%09%3C%2FDial%3E%0A%3C%2FResponse%3E&'
+        url: callUrl
 
     }, function(err, responseData) {
         //executed when the call has been initiated.
