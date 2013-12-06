@@ -17,11 +17,11 @@ var init = function() {
     
     var transcriptionSchema = new mongoose.Schema({
         sid: {type: String},
-        date_created: {type: String},
+        // date_created: {type: String},
         audio_url: { type: String},
         transcription_text: { type: String},
-        duration: { type: String},
-        uri: { type: String}
+        // duration: { type: String},
+        // uri: { type: String}
     });
     
     // Compiles the schema into a model, opening (or creating, if
